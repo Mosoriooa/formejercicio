@@ -1,6 +1,7 @@
 window.onload = function(){
     document.getElementById("btnEnviar").addEventListener("click", registrarUsuario);
     document.getElementById("btnEnviarConDOM").addEventListener("click", registrarUsuarioDOM);
+    document.getElementById("btnEnviarAll").addEventListener("click", mostrarAll);
 
     var arrUsuarios = [];
 
@@ -14,8 +15,8 @@ window.onload = function(){
             edad: document.getElementById("edad").value,
             contraseña: document.getElementById("contraseña").value
         };
-        /*
         console.log("objeto", nuevoUsuario);
+        /*
         let nUsuario = document.getElementById("nUsuario").value;
         let nombre = document.getElementById("nombre").value;
         let apellido = document.getElementById("apellido").value;
@@ -24,11 +25,14 @@ window.onload = function(){
 
 
         //insertar en la tabla
-        const bodytabla = document.getElementById("tab_body");
+        const bodytabla = document.getElementById("tab_body1");
         let str_insercion = "<tr><td>"+nUsuario+"</td><td>"+nombre+"</td><td>"+apellido+"</td><td>"+edad+"</td></tr>"
         bodytabla.innerHTML += str_insercion;
         */
-        const bodytabla = document.getElementById("tab_body");
+
+        arrUsuarios.push(nuevoUsuario);
+
+        const bodytabla = document.getElementById("tab_body1");
         let str_insercion = "<tr><td>"+nuevoUsuario.usuario+"</td><td>"+nuevoUsuario.nombre+"</td><td>"+nuevoUsuario.apellido+"</td><td>"+nuevoUsuario.edad+"</td></tr>"
         bodytabla.innerHTML += str_insercion;
     }
@@ -65,9 +69,23 @@ window.onload = function(){
         row.appendChild(col2);
         row.appendChild(col3);
         row.appendChild(col4);
-        document.getElementById("tab_body").appendChild(row);
+        document.getElementById("tab_body1").appendChild(row);
 
 
     }
 
+    function mostrarAll(){
+        const bodytabla = document.getElementById("tab_body2");
+        let str_insercion="";
+        for(let idx in arrUsuarios){
+            console.log(arrUsuarios[idx]);
+            const bodytabla = document.getElementById("tab_body2");
+        let str_insercion = "<tr><td>"+arrUsuarios[idx].usuario+
+                            "</td><td>"+arrUsuarios[idx].nombre+
+                            "</td><td>"+arrUsuarios[idx].apellido+
+                            "</td><td>"+arrUsuarios[idx].edad+"</td></tr>"
+        bodytabla.innerHTML += str_insercion;
+        }
+
+    }
 }
